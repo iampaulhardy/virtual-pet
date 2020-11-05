@@ -1,0 +1,16 @@
+{
+  "name": "virtual-pet",
+  "version": "1.0.0",
+  "description": "Virtual Pet json file",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest --verbose --bail"
+  },
+
+  "author": "Paul Hardy",
+  "license": "ISC"
+}
