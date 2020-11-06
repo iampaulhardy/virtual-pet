@@ -7,6 +7,12 @@
   "devDependencies": {
     "jest": "^26.6.3"
   },
+
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:iampaulhardy/virtual-pet.git"
+  },
+
   "scripts": {
     "test": "jest --verbose --bail"
   },
