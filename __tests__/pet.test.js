@@ -1,7 +1,8 @@
 const Pet = require('../src/pet');
 
 describe('constructor', () => {
-    it('returns an object', () => {
-      expect(new Pet('Fido')).toBeInstanceOf(Object);
+    it('returns a pet name', () => {
+      const pet = new Pet('Dave')
+      expect(pet.name).toBe('Dave');
     });
   });
