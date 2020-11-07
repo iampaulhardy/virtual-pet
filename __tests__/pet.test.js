@@ -1,17 +1,21 @@
 const Pet = require('../src/pet');
 
 describe('constructor', () => {
-    it('returns a pet name, inital age of 0', () => {
+    it('returns a pet name, inital age of 0, inital hunger of 0, inital fitness of 10', () => {
       const pet = new Pet('Dave')
       expect(pet.name).toBe('Dave');
       expect(pet.age).toEqual(0);
+      expect(pet.hunger).toEqual(0);
+      expect(pet.fitness).toEqual(10)
     });
   });
 
-  describe('growUp', () => {
-    it('increments the age by 1', () => {
+describe('growUp', () => {
+    it('increments the age by 1, hunger by 5, fitness by 3', () => {
       const pet = new Pet('Dave');
       pet.growUp();
       expect(pet.age).toEqual(1);
+      expect(pet.hunger).toEqual(5);
+      expect(pet.fitness).toEqual(13);
     });
   });
