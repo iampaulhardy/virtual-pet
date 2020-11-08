@@ -75,3 +75,23 @@ describe('growUp', () => {
       expect(pet.status).toEqual('I am hungry AND I need a walk');
     });
   });
+
+  describe('Pet is Alive', () => {
+    it('I am Alive', () => {
+      const pet = new Pet('Dave');
+      pet.fitness = 1;
+      pet.hunger = 9;
+      pet.age = 29;
+      expect(pet.isAlive).toEqual(true);
+    });
+  });
+
+  describe('Pet is Dead', () => {
+    it('I am Dead', () => {
+      const pet = new Pet('Dave');
+      pet.fitness = 0;
+      pet.hunger = 10;
+      pet.age = 30;
+      expect(pet.isAlive).toEqual(false);
+    });
+  });

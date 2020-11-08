@@ -16,6 +16,12 @@ function Pet(name) {
     this.status = '';
 }
 
+Pet.prototype = {
+    get isAlive() {
+        return this.age < 30 && this.hunger < 10 && this.fitness > 0;
+    }
+}
+
 Pet.prototype.growUp = function() {
     this.age +=GROWTH_AGE;
     this.hunger +=GROWTH_HUNGER;
@@ -36,7 +42,7 @@ Pet.prototype.feed = function() {
     } else {
         this.hunger = MINIMUM_HUNGER;
     }
-}
+};
 
 Pet.prototype.feeling = function() {
     if (this.fitness > GROWTH_FITNESS && this.hunger < GROWTH_HUNGER) {
@@ -49,6 +55,9 @@ Pet.prototype.feeling = function() {
         this.status = 'I am hungry';
     }
 
-} 
+Pet.prototype.isAlive = function() {
+    return this.age < 30 && this.hunger < 10 && this.fitness > 0;
+    }
+}
 
 module.exports = Pet;
