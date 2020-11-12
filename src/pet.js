@@ -13,6 +13,7 @@ function Pet(name) {
     this.age = INITIAL_AGE;
     this.hunger = INITIAL_HUNGER;
     this.fitness = MAXIMUM_FITNESS;
+    this.children = [];
     this.status = '';
 }
 
@@ -22,13 +23,31 @@ Pet.prototype = {
     }
 }
 
+Pet.prototype.adoptChild = function(child) {
+    this.children.push(child);
+}
+
+Pet.prototype.haveBaby = function (child) {
+    console.log(this);
+    const result = new Pet(child);
+    console.log(result);
+    this.children.push(result);
+    console.log(this);
+}
+
 Pet.prototype.growUp = function() {
+    if (!this.isAlive) {
+        throw new Error('Your pet is no longer alive :(');
+    }
     this.age +=GROWTH_AGE;
     this.hunger +=GROWTH_HUNGER;
     this.fitness -=GROWTH_FITNESS;
 };
 
 Pet.prototype.walk = function() {
+    if (!this.isAlive) {
+        throw new Error('Your pet is no longer alive :(');
+    }
     if ((this.fitness + WALK_FITNESS) <= MAXIMUM_FITNESS ) {
         this.fitness += WALK_FITNESS;
     } else {
@@ -37,6 +56,9 @@ Pet.prototype.walk = function() {
 }
 
 Pet.prototype.feed = function() {
+    if (!this.isAlive) {
+        throw new Error('Your pet is no longer alive :(');
+    }
     if ((this.hunger - FEED_HUNGER) >= MINIMUM_HUNGER ) {
         this.hunger -= FEED_HUNGER;
     } else {
@@ -44,20 +66,22 @@ Pet.prototype.feed = function() {
     }
 };
 
-Pet.prototype.feeling = function() {
-    if (this.fitness > GROWTH_FITNESS && this.hunger < GROWTH_HUNGER) {
+Pet.prototype.checkUp = function() {
+    if (this.age > 30 || this.hunger > 10 || this.fitness < 0) {
+        this.status = 'Your pet is no longer alive :(';
+    } else if (this.fitness > GROWTH_FITNESS && this.hunger < GROWTH_HUNGER) {
         this.status = 'I feel great!';
     } else if (this.fitness <= GROWTH_FITNESS && this.hunger >= GROWTH_HUNGER) {
         this.status = 'I am hungry AND I need a walk';
     } else if (this.fitness <= GROWTH_FITNESS) {
         this.status = 'I need a walk';
-    } else { (this.hunger >= GROWTH_HUNGER)
+    } else if (this.hunger >= GROWTH_HUNGER) {
         this.status = 'I am hungry';
     }
+};
 
 Pet.prototype.isAlive = function() {
     return this.age < 30 && this.hunger < 10 && this.fitness > 0;
     }
-}
 
 module.exports = Pet;
